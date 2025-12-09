@@ -4,27 +4,37 @@
     flex-direction: column;
 }
 
+
 main[b-g9rhtotjjk] {
     flex: 1;
+    /* Fondo del contenido principal: blanco o muy claro */
+    background-color: #f8f9fa; /* Color muy claro para el área de trabajo */
 }
 
+/* 🔄 Estilo del Sidebar: Fondo oscuro como en el prototipo */
 .sidebar[b-g9rhtotjjk] {
-    background-image: linear-gradient(180deg, rgb(246 141 117) 0%, #dc3545 70%);
+    /* Fondo oscuro sólido para la barra lateral */
+    background-color: #212529; /* Color de fondo oscuro (Dark/Black) */
+    /* Opcional: Un degradado sutil si deseas un toque de profundidad */
+    /* background-image: linear-gradient(180deg, #343a40 0%, #212529 70%); */ 
 }
 
 .top-row[b-g9rhtotjjk] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
+    /* Mantenemos el color claro o lo adaptamos al diseño */
+    background-color: #ffffff; /* Blanco para la barra superior */
+    border-bottom: 1px solid #dee2e6; /* Borde más sutil */
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra ligera para separarla del contenido */
 }
 
     .top-row[b-g9rhtotjjk]  a, .top-row[b-g9rhtotjjk]  .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
         text-decoration: none;
+        color: #495057; /* Texto oscuro en la barra superior */
     }
 
     .top-row[b-g9rhtotjjk]  a:hover, .top-row[b-g9rhtotjjk]  .btn-link:hover {
@@ -76,6 +86,7 @@ main[b-g9rhtotjjk] {
     }
 }
 
+/* Otros estilos (Error UI) permanecen sin cambios */
 #blazor-error-ui[b-g9rhtotjjk] {
     background: lightyellow;
     bottom: 0;

@@ -1,27 +1,27 @@
 {
   "Files": [
     {
-      "Id": "C:\\C#\\tarea3\\tarea3\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\tarea3.bundle.scp.css",
-      "PackagePath": "staticwebassets\\tarea3.bundle.scp.css"
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\tarea3.bundle.scp.css",
+      "PackagePath": "staticwebassets\\tarea3.diiagsggsk.bundle.scp.css"
     },
     {
-      "Id": "C:\\C#\\tarea3\\tarea3\\wwwroot\\app.css",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\C#\\tarea3\\tarea3\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\C#\\tarea3\\tarea3\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\C#\\tarea3\\tarea3\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\C#\\tarea3\\tarea3\\wwwroot\\image\\perfil1.PNG",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\image\\perfil1.PNG",
       "PackagePath": "staticwebassets\\image\\perfil1.PNG"
     },
     {
@@ -35,6 +35,10 @@
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.tarea3.props",
       "PackagePath": "buildTransitive\\tarea3.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.tarea3.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.tarea3.Microsoft.AspNetCore.StaticWebAssets.props",

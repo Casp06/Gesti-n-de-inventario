@@ -1,0 +1,180 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject IJSRuntime JSx
+@using System.Text.Json
+@using static Productos
+@inject NavigationManager NavMan
+
+<PageTitle>Dashboard de Inventario</PageTitle>
+
+<h1 class="mb-4 text-secondary">Dashboard de Inventario</h1>
+
+<div class="container-fluid px-0">
+    <div class="row g-4 mb-4">
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card text-white bg-primary shadow-sm">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="fs-4 fw-semibold">@productos.Sum(p => p.StockActual)</div>
+                        <div>Unidades Totales en Stock</div>
+                    </div>
+                    <i class="oi oi-box fs-3 p-1"></i>
+                </div>
+                <div class="c-chart-wrapper mt-3 mx-3"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card text-white bg-info shadow-sm">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                        @{
+                            decimal valorInventario = productos.Sum(p => p.StockActual * p.PrecioUnitario);
+                        }
+                        <div class="fs-4 fw-semibold">
+                            <LabelDinero Valor="@Convert.ToDouble(valorInventario)" />
+                        </div>
+                        <div>Valor Estimado del Inventario</div>
+                    </div>
+                    <i class="oi oi-dollar fs-3 p-1"></i>
+                </div>
+                <div class="c-chart-wrapper mt-3 mx-3"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card text-white bg-warning shadow-sm">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                        @{
+                            var bajoStockCount = productos.Count(p => p.StockActual <= 10);
+                        }
+                        <div class="fs-4 fw-semibold">@bajoStockCount</div>
+                        <div>Productos con Stock Bajo</div>
+                    </div>
+                    <i class="oi oi-bell fs-3 p-1"></i>
+                </div>
+                <div class="c-chart-wrapper mt-3"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card text-white bg-danger shadow-sm">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                        @{
+                            var ultimoProducto = productos.OrderByDescending(p => p.FechaIngreso).FirstOrDefault();
+                        }
+                        <div class="fs-6 fw-semibold">@ultimoProducto?.Nombre ?? "N/A"</div>
+                        <div>Último Ingreso (@ultimoProducto?.FechaIngreso.ToShortDateString())</div>
+                    </div>
+                    <i class="oi oi-calendar fs-3 p-1"></i>
+                </div>
+                <div class="c-chart-wrapper mt-3 mx-3"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="my-1">🚨 Alertas de Stock Bajo (Menor o igual a 10)</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        @{
+                            var productosBajoStock = productos.Where(p => p.StockActual <= 10).OrderBy(p =>
+                            p.StockActual).ToList();
+                        }
+                        @if (productosBajoStock.Any())
+                        {
+                            @foreach (var p in productosBajoStock)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    **@p.Nombre**
+                                    <span class="badge bg-danger rounded-pill">Stock: @p.StockActual</span>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="list-group-item text-success">¡Todo el stock está bien!</li>
+                        }
+                    </ul>
+                    <div class="text-end mt-3">
+                        <a href="/productos" class="btn btn-sm btn-outline-primary">Ir a Gestión de Productos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h5 class="my-1">⭐ Top 5 Productos por Precio</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Producto</th>
+                                <th class="text-end">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var topProductos = productos.OrderByDescending(p => p.PrecioUnitario).Take(5).ToList();
+                            }
+                            @for (int i = 0; i < topProductos.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@topProductos[i].Nombre</td>
+                                    <td class="text-end">
+                                        <LabelDinero Valor="@Convert.ToDouble(topProductos[i].PrecioUnitario)" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+@code {
+    public class Producto
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Nombre { get; set; } = string.Empty;
+        public decimal PrecioUnitario { get; set; } = 0;
+        public int StockActual { get; set; } = 0;
+        public DateTime FechaIngreso { get; set; } = DateTime.Now;
+    }
+
+    List<Producto> productos = new List<Producto>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            var productosJson = await JSx.InvokeAsync<string>("localStorage.getItem", "productos");
+
+            if (!string.IsNullOrEmpty(productosJson))
+            {
+                productos = JsonSerializer.Deserialize<List<Producto>>(productosJson) ?? new List<Producto>();
+                StateHasChanged();
+            }
+        }
+    }
+}

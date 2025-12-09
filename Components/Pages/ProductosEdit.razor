@@ -1,0 +1,116 @@
+@page "/productos/nuevo"
+@page "/productos/editar/{id}"
+@inject NavigationManager NavMan
+@inject IJSRuntime JSx
+@rendermode InteractiveServer
+@using System.Text.Json
+@using static Productos
+
+<PageTitle>Producto - @(id == null ? "Nuevo" : "Editar")</PageTitle>
+<h3>@(id == null ? "Nuevo Producto" : "Editar Producto")</h3>
+
+<EditForm Model="@producto" OnValidSubmit="@GuardarProducto">
+    <DataAnnotationsValidator />
+
+    <div class="card shadow p-4">
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label">Nombre del Producto</label>
+                <InputText id="nombre" class="form-control" @bind-Value="@producto.Nombre" />
+                <ValidationMessage For="@(() => producto.Nombre)" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
+                <InputDate id="fechaIngreso" class="form-control" @bind-Value="@producto.FechaIngreso" />
+                <ValidationMessage For="@(() => producto.FechaIngreso)" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="precioUnitario" class="form-label">Precio Unitario ($)</label>
+                <InputNumber id="precioUnitario" class="form-control" @bind-Value="@producto.PrecioUnitario" />
+                <ValidationMessage For="@(() => producto.PrecioUnitario)" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="stockActual" class="form-label">Stock Actual</label>
+                <InputNumber id="stockActual" class="form-control" @bind-Value="@producto.StockActual" />
+                <ValidationMessage For="@(() => producto.StockActual)" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="codigoSKU" class="form-label">Código SKU</label>
+                <InputText id="codigoSKU" class="form-control" @bind-Value="@producto.CodigoSKU" />
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg me-3">
+                <i class="oi oi-check"></i> Guardar
+            </button>
+            <button type="button" class="btn btn-secondary btn-lg" @onclick='() => NavMan.NavigateTo("productos")'>
+                <i class="oi oi-x"></i> Cancelar
+            </button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string? id { get; set; } = null;
+
+    private Producto producto = new Producto();
+    List<Producto> productos = new List<Producto>();
+
+    private async Task GuardarProducto()
+    {
+        if (string.IsNullOrEmpty(id))
+        {
+            producto.Id = Guid.NewGuid().ToString();
+            productos.Add(producto);
+        }
+        else
+        {
+            var index = productos.FindIndex(x => x.Id == producto.Id);
+            if (index != -1)
+            {
+                productos[index] = producto;
+            }
+        }
+
+        await JSx.InvokeVoidAsync("localStorage.setItem", "productos", JsonSerializer.Serialize(productos));
+
+        NavMan.NavigateTo("productos");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var productosJson = await JSx.InvokeAsync<string>("localStorage.getItem", "productos");
+
+            if (!string.IsNullOrEmpty(productosJson))
+            {
+                productos = JsonSerializer.Deserialize<List<Producto>>(productosJson) ?? new List<Producto>();
+
+                if (id != null)
+                {
+                    producto = productos.FirstOrDefault(r => r.Id == id) ?? new Producto();
+                }
+
+                StateHasChanged();
+            }
+        }
+    }
+    public class Producto
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Nombre { get; set; } = string.Empty;
+        public decimal PrecioUnitario { get; set; } = 0;
+        public int StockActual { get; set; } = 0;
+        public DateTime FechaIngreso { get; set; } = DateTime.Now;
+        public string CodigoSKU { get; set; } = string.Empty;
+    }
+}

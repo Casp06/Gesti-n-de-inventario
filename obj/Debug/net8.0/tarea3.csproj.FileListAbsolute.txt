@@ -28,3 +28,36 @@ C:\C#\tarea3\tarea3\obj\Debug\net8.0\tarea3.pdb
 C:\C#\tarea3\tarea3\obj\Debug\net8.0\tarea3.genruntimeconfig.cache
 C:\C#\tarea3\tarea3\obj\Debug\net8.0\ref\tarea3.dll
 C:\C#\tarea3\tarea3\obj\Debug\net8.0\tarea3.sourcelink.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\appsettings.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\tarea3.staticwebassets.runtime.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\tarea3.staticwebassets.endpoints.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\tarea3.exe
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\tarea3.deps.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\tarea3.runtimeconfig.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\tarea3.dll
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\bin\Debug\net8.0\tarea3.pdb
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.AssemblyInfoInputs.cache
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.AssemblyInfo.cs
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.csproj.CoreCompileInputs.cache
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.sourcelink.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\scopedcss\bundle\tarea3.styles.css
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\scopedcss\projectbundle\tarea3.bundle.scp.css
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets\msbuild.tarea3.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets\msbuild.tarea3.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets\msbuild.build.tarea3.props
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.tarea3.props
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.tarea3.props
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.dll
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\refint\tarea3.dll
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.pdb
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\tarea3.genruntimeconfig.cache
+C:\Users\Jahaziel\Desktop\New folder\Tarea-3-web\obj\Debug\net8.0\ref\tarea3.dll
