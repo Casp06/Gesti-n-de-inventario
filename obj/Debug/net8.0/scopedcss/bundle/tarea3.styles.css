@@ -67,6 +67,8 @@ main[b-g9rhtotjjk] {
         height: 100vh;
         position: sticky;
         top: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .top-row[b-g9rhtotjjk] {
@@ -218,14 +220,10 @@ main[b-g9rhtotjjk] {
 
 /* Contenedor de los enlaces sociales */
 .social-links[b-7s8uwk3aec] {
-    /* Mueve el grupo de íconos hacia abajo. Aumenta el valor (ej. 7rem) si necesitas más espacio. */
-    margin-top: 35rem; 
-    padding: 0 1rem 1rem 1rem;
-    
-    /* ✅ Centra los íconos y los mantiene en fila */
+    margin-top: auto; 
     display: flex; 
     justify-content: center; 
-    gap: 15px; /* Espacio entre íconos */
+    gap: 15px;
 }
 
 /* Estilo de cada enlace social */

@@ -109,14 +109,10 @@
 
 /* Contenedor de los enlaces sociales */
 .social-links {
-    /* Mueve el grupo de íconos hacia abajo. Aumenta el valor (ej. 7rem) si necesitas más espacio. */
-    margin-top: 35rem; 
-    padding: 0 1rem 1rem 1rem;
-    
-    /* ✅ Centra los íconos y los mantiene en fila */
+    margin-top: auto; 
     display: flex; 
     justify-content: center; 
-    gap: 15px; /* Espacio entre íconos */
+    gap: 15px;
 }
 
 /* Estilo de cada enlace social */
