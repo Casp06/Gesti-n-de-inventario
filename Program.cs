@@ -1,7 +1,7 @@
 using tarea3.Components;
 using Tarea3.Services;
 using Microsoft.EntityFrameworkCore;
-using Tarea3.Data; // Asumiendo que tu contexto está aquí
+using Tarea3.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// Después de builder.Services.AddRazorPages();
-
 // 1. Configurar SQLite y EF Core
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
-                       "DataSource=inventario.db"; // Si no hay configuración, usa este archivo
+                       "DataSource=inventario.db";
 
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseSqlite(connectionString)); 
@@ -27,16 +25,28 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// 🛑 CORRECCIÓN 1: Comentar esta línea para evitar problemas de proxy en Render
+// app.UseHttpsRedirection(); 
 
 app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+
+
+// 🛑 CORRECCIÓN 2: Código para asegurar que la base de datos (inventario.db) exista al iniciar
+// Esto resuelve el error de la página blanca al intentar acceder a la DB por primera vez.
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+
+    // Asegura que el archivo SQLite y las tablas existan en el contenedor
+    context.Database.EnsureCreated(); 
+}
 
 app.Run();
