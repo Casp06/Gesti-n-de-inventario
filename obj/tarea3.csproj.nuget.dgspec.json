@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\tarea3.csproj": {}
+    "C:\\Users\\Crist\\Downloads\\Tarea-3-web\\Tarea-3-web\\tarea3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\tarea3.csproj": {
+    "C:\\Users\\Crist\\Downloads\\Tarea-3-web\\Tarea-3-web\\tarea3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\tarea3.csproj",
+        "projectUniqueName": "C:\\Users\\Crist\\Downloads\\Tarea-3-web\\Tarea-3-web\\tarea3.csproj",
         "projectName": "tarea3",
-        "projectPath": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\tarea3.csproj",
-        "packagesPath": "C:\\Users\\Jahaziel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\obj\\",
+        "projectPath": "C:\\Users\\Crist\\Downloads\\Tarea-3-web\\Tarea-3-web\\tarea3.csproj",
+        "packagesPath": "C:\\Users\\Crist\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Crist\\Downloads\\Tarea-3-web\\Tarea-3-web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jahaziel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,11 +44,27 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -68,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

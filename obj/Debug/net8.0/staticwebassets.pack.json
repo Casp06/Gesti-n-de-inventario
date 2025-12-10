@@ -1,27 +1,31 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\tarea3.bundle.scp.css",
-      "PackagePath": "staticwebassets\\tarea3.diiagsggsk.bundle.scp.css"
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\Tarea-3-web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\tarea3.bundle.scp.css",
+      "PackagePath": "staticwebassets\\tarea3.0z1wuysu9m.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\app.css",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\Tarea-3-web\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\Tarea-3-web\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\Tarea-3-web\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\Tarea-3-web\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\wwwroot\\image\\perfil1.PNG",
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\Tarea-3-web\\wwwroot\\image\\noboa.jpg",
+      "PackagePath": "staticwebassets\\image\\noboa.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Jahaziel\\Desktop\\New folder\\Tarea-3-web\\Tarea-3-web\\wwwroot\\image\\perfil1.PNG",
       "PackagePath": "staticwebassets\\image\\perfil1.PNG"
     },
     {

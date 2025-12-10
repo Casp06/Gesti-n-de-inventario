@@ -1,8 +1,10 @@
 ﻿@page "/"
 @rendermode InteractiveServer
-@inject IJSRuntime JSx
-@using System.Text.Json
-@using static Productos
+
+@using Tarea3.Models
+@using Tarea3.Services
+@inject ProductoService ProductoServicio
+@inject IJSRuntime JSx 
 @inject NavigationManager NavMan
 
 <PageTitle>Dashboard de Inventario</PageTitle>
@@ -30,10 +32,13 @@
                 <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                     <div>
                         @{
-                            decimal valorInventario = productos.Sum(p => p.StockActual * p.PrecioUnitario);
+                            decimal valorInventario = productos.Sum(p => p.StockActual *
+                            p.PrecioUnitario);
                         }
                         <div class="fs-4 fw-semibold">
+                                                       
                             <LabelDinero Valor="@Convert.ToDouble(valorInventario)" />
+                                                   
                         </div>
                         <div>Valor Estimado del Inventario</div>
                     </div>
@@ -64,10 +69,15 @@
                 <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                     <div>
                         @{
-                            var ultimoProducto = productos.OrderByDescending(p => p.FechaIngreso).FirstOrDefault();
+                            var ultimoProducto = productos.OrderByDescending(p =>
+                            p.FechaIngreso).FirstOrDefault();
+                            // ✅ MODIFICACIÓN: Creamos una variable para limpiar la cadena de texto
+                            string nombreLimpio = ultimoProducto?.Nombre?.Replace(" ?? \"N/A\"", "").Replace("?? \"N/A\"",
+                            "") ?? "N/A";
                         }
-                        <div class="fs-6 fw-semibold">@ultimoProducto?.Nombre ?? "N/A"</div>
-                        <div>Último Ingreso (@ultimoProducto?.FechaIngreso.ToShortDateString())</div>
+                        <div class="fs-6 fw-semibold">@nombreLimpio</div>
+                        <div>Último Ingreso (@ultimoProducto?.FechaIngreso.ToShortDateString())
+                        </div>
                     </div>
                     <i class="oi oi-calendar fs-3 p-1"></i>
                 </div>
@@ -87,7 +97,8 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         @{
-                            var productosBajoStock = productos.Where(p => p.StockActual <= 10).OrderBy(p =>
+                            var productosBajoStock = productos.Where(p => p.StockActual <=
+                            10).OrderBy(p =>
                             p.StockActual).ToList();
                         }
                         @if (productosBajoStock.Any())
@@ -96,17 +107,20 @@
                             {
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     **@p.Nombre**
-                                    <span class="badge bg-danger rounded-pill">Stock: @p.StockActual</span>
+                                    <span class="badge bg-danger rounded-pill">Stock:
+                                        @p.StockActual</span>
                                 </li>
                             }
                         }
                         else
                         {
-                            <li class="list-group-item text-success">¡Todo el stock está bien!</li>
+                            <li class="list-group-item text-success">¡Todo el stock está bien!
+                            </li>
                         }
                     </ul>
                     <div class="text-end mt-3">
-                        <a href="/productos" class="btn btn-sm btn-outline-primary">Ir a Gestión de Productos</a>
+                        <a href="/productos" class="btn btn-sm btn-outline-primary">Ir a Gestión
+                            de Productos</a>
                     </div>
                 </div>
             </div>
@@ -128,7 +142,8 @@
                         </thead>
                         <tbody>
                             @{
-                                var topProductos = productos.OrderByDescending(p => p.PrecioUnitario).Take(5).ToList();
+                                var topProductos = productos.OrderByDescending(p =>
+                                p.PrecioUnitario).Take(5).ToList();
                             }
                             @for (int i = 0; i < topProductos.Count; i++)
                             {
@@ -136,7 +151,9 @@
                                     <td>@(i + 1)</td>
                                     <td>@topProductos[i].Nombre</td>
                                     <td class="text-end">
+                                                                           
                                         <LabelDinero Valor="@Convert.ToDouble(topProductos[i].PrecioUnitario)" />
+                                                                       
                                     </td>
                                 </tr>
                             }
@@ -151,30 +168,16 @@
 </div>
 
 
-@code {
-    public class Producto
-    {
-        public string Id { get; set; } = string.Empty;
-        public string Nombre { get; set; } = string.Empty;
-        public decimal PrecioUnitario { get; set; } = 0;
-        public int StockActual { get; set; } = 0;
-        public DateTime FechaIngreso { get; set; } = DateTime.Now;
-    }
 
+@code {
+    // 2. Usamos la clase Producto del namespace Tarea3.Models
+    // Ya no necesitamos la clase Producto aquí, solo la lista
     List<Producto> productos = new List<Producto>();
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    // 3. Usamos OnInitializedAsync para cargar datos desde la base de datos
+    protected override async Task OnInitializedAsync()
     {
-        if (firstRender)
-        {
-
-            var productosJson = await JSx.InvokeAsync<string>("localStorage.getItem", "productos");
-
-            if (!string.IsNullOrEmpty(productosJson))
-            {
-                productos = JsonSerializer.Deserialize<List<Producto>>(productosJson) ?? new List<Producto>();
-                StateHasChanged();
-            }
-        }
+        // Cargamos todos los productos de la base de datos
+        productos = await ProductoServicio.GetAllProductosAsync();
     }
 }

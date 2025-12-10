@@ -1,29 +1,54 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Luis NOBOA & ASOCS</a>
+﻿@rendermode InteractiveServer
+
+<div class="sidebar bg-dark text-white p-3 d-flex flex-column" style="width: 250px; min-height: 100vh;">
+
+    <div class="sidebar-header text-center py-3 border-bottom border-secondary mb-3">
+        <h4 class="text-uppercase fw-bold m-0">
+            Luis NOBOA & ASOCS
+        </h4>
+    </div>
+
+    <div class="nav flex-column">
+
+        <NavLink class="nav-link text-white rounded-3 mb-1" href="" Match="NavLinkMatch.All">
+            <i class="oi oi-dashboard fs-5 me-2"></i> Dashboard
+        </NavLink>
+
+        <NavLink class="nav-link text-white rounded-3 mb-1" href="productos">
+            <i class="oi oi-box fs-5 me-2"></i> Productos
+        </NavLink>
+
+        <NavLink class="nav-link text-white rounded-3 mb-1" href="soporte">
+            <i class="oi oi-list-nested fs-5 me-2"></i> Soporte Técnico
+        </NavLink>
+        <div class="social-links">
+            <a href="https://www.whatsapp.com/catalog/18095338039/?app_absent=0&utm_source=ig" target="_blank"
+                title="WhatsApp">
+                <span class="bi bi-whatsapp" aria-hidden="true"></span>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=100067321025508" target="_blank" title="Facebook">
+                <span class="bi bi-facebook" aria-hidden="true"></span>
+            </a>
+            <a href="https://www.instagram.com/luisnoboaasociados" target="_blank" title="Instagram">
+                <span class="bi bi-instagram" aria-hidden="true"></span>
+            </a>
+        </div>
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+<style>
+    .nav-link.active {
+        /* Color primario de Bootstrap (azul) para el enlace activo */
+        background-color: #007bff;
+        font-weight: bold;
+    }
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Dashboard
-            </NavLink>
-        </div>
+    .nav-link:hover {
+        background-color: #343a40;
+        /* Gris oscuro para hover */
+    }
+</style>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="productos">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Productos
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="acerca_de">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Acerca de
-            </NavLink>
-        </div>
-    </nav>
-</div>
+@code {
+    // No se necesita código aquí para esta implementación simple
+}

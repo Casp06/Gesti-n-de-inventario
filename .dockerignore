@@ -1,0 +1,10 @@
+# Archivos y carpetas de Build/Test/NuGet
+**/bin/
+**/obj/
+.git
+.github
+.vscode
+.vs
+*.sln
+*.user
+**/node_modules

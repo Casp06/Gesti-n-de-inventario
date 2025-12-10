@@ -214,3 +214,39 @@ main[b-g9rhtotjjk] {
 }
 
 
+/* --- Sección de Estilos de Redes Sociales --- */
+
+/* Contenedor de los enlaces sociales */
+.social-links[b-7s8uwk3aec] {
+    /* Mueve el grupo de íconos hacia abajo. Aumenta el valor (ej. 7rem) si necesitas más espacio. */
+    margin-top: 35rem; 
+    padding: 0 1rem 1rem 1rem;
+    
+    /* ✅ Centra los íconos y los mantiene en fila */
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; /* Espacio entre íconos */
+}
+
+/* Estilo de cada enlace social */
+.social-links a[b-7s8uwk3aec] {
+    color: #d7d7d7; /* Color similar al texto del menú */
+    font-size: 1.5rem; /* Ajuste el tamaño para que se vean bien los tres */
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+/* Efecto hover */
+.social-links a:hover[b-7s8uwk3aec] {
+    color: #ffffff;
+}
+
+/* Anular el estilo de fondo SÓLO para los íconos sociales (Crucial para que se vean) */
+.social-links span.bi[b-7s8uwk3aec] {
+    background-image: none !important;
+    background: none !important;
+    width: auto;
+    height: auto;
+    margin-right: 0;
+    line-height: 1; 
+}

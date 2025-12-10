@@ -1,0 +1,83 @@
+@page "/productos/imprimir/{id}"
+@rendermode InteractiveServer
+@inject NavigationManager NavMan
+@inject IJSRuntime JSx
+@layout PrintLayout
+
+@using Tarea3.Models    
+@using Tarea3.Services   
+@inject ProductoService ProductoServicio
+
+<PageTitle>Imprimir Producto</PageTitle>
+
+@if (producto != null)
+{
+    <div class="card shadow p-4 border-info">
+        <h1 class="text-info border-bottom pb-2">Reporte de Producto</h1>
+        
+        <div class="mb-3">
+            <b>ID de Producto: </b> @producto.Id
+        </div>
+        <div class="mb-3">
+            <b>Fecha de Ingreso: </b> @producto.FechaIngreso.ToShortDateString()
+        </div>
+        <div class="mb-3">
+            <b>Nombre del Producto: </b> @producto.Nombre
+        </div>
+        <div class="mb-3">
+            <b>Precio Unitario: </b>
+            <LabelDinero Valor="@Convert.ToDouble(producto.PrecioUnitario)" />
+        </div>
+        <div class="mb-3">
+            <b>Stock Actual: </b>
+            @producto.StockActual
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Cargando datos o producto no encontrado...
+    </div>
+}
+
+
+@code{
+    [Parameter]
+    public string id { get; set; } = "";
+    
+    // 2. Usamos el modelo Producto de la carpeta Models, no la definición interna
+    Producto? producto;
+    
+    // 3. Carga de datos desde la DB al iniciar el componente
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(id))
+        {
+            producto = await ProductoServicio.GetProductoByIdAsync(id);
+        }
+
+        // Si el producto es nulo, no se encontró el ID en la DB
+        if (producto == null)
+        {
+            // Muestra una alerta (solo en desarrollo, en producción es mejor usar un log)
+            await JSx.InvokeVoidAsync("alert", $"Error: No se encontró el producto con ID: {id}");
+            NavMan.NavigateTo("productos"); // Redirige a la lista
+        }
+    }
+    
+    // 4. Mantenemos la lógica de impresión en OnAfterRenderAsync, pero solo cuando se renderiza por primera vez.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && producto != null)
+        {
+            // Damos tiempo a Blazor para renderizar completamente
+            await Task.Delay(100); 
+            
+            await JSx.InvokeVoidAsync("window.print");
+            
+            // Opcional: cierra la pestaña de impresión después de que la impresión comience
+            await JSx.InvokeVoidAsync("window.close");
+        }
+    }
+}

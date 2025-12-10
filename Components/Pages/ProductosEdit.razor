@@ -3,8 +3,11 @@
 @inject NavigationManager NavMan
 @inject IJSRuntime JSx
 @rendermode InteractiveServer
-@using System.Text.Json
-@using static Productos
+
+@* 1. Reemplazamos la lógica de localStorage por la de servicios de EF Core *@
+@using Tarea3.Models
+@using Tarea3.Services
+@inject ProductoService ProductoServicio
 
 <PageTitle>Producto - @(id == null ? "Nuevo" : "Editar")</PageTitle>
 <h3>@(id == null ? "Nuevo Producto" : "Editar Producto")</h3>
@@ -41,6 +44,7 @@
 
             <div class="col-md-4 mb-3">
                 <label for="codigoSKU" class="form-label">Código SKU</label>
+                @* ⚠️ Nota: El modelo Producto.cs original no tenía CodigoSKU. *@@* Asegúrate de agregarlo a Models/Producto.cs si lo quieres usar. *@
                 <InputText id="codigoSKU" class="form-control" @bind-Value="@producto.CodigoSKU" />
             </div>
 
@@ -62,55 +66,43 @@
     public string? id { get; set; } = null;
 
     private Producto producto = new Producto();
-    List<Producto> productos = new List<Producto>();
 
+    // 3. Usamos OnInitializedAsync para cargar el producto, si existe (edición)
+    protected override async Task OnInitializedAsync()
+    {
+        if (id != null)
+        {
+            // Busca el producto en la base de datos
+            var productoDb = await ProductoServicio.GetProductoByIdAsync(id);
+            if (productoDb != null)
+            {
+                producto = productoDb;
+            }
+            else
+            {
+                // Si no se encuentra, regresa a la lista
+                NavMan.NavigateTo("productos");
+            }
+        }
+    }
+    
+    // 3. Actualizamos la lógica de guardar para usar los métodos del servicio
     private async Task GuardarProducto()
     {
-        if (string.IsNullOrEmpty(id))
+        if (string.IsNullOrEmpty(producto.Id) || id == null)
         {
-            producto.Id = Guid.NewGuid().ToString();
-            productos.Add(producto);
+            // Crear nuevo (EF Core generará el ID si usaste Guid.NewGuid().ToString() en el modelo)
+            await ProductoServicio.AddProductoAsync(producto);
+            await JSx.InvokeVoidAsync("alert", $"Producto '{producto.Nombre}' creado con éxito!");
         }
         else
         {
-            var index = productos.FindIndex(x => x.Id == producto.Id);
-            if (index != -1)
-            {
-                productos[index] = producto;
-            }
+            // Editar existente
+            await ProductoServicio.UpdateProductoAsync(producto);
+            await JSx.InvokeVoidAsync("alert", $"Producto '{producto.Nombre}' actualizado con éxito!");
         }
 
-        await JSx.InvokeVoidAsync("localStorage.setItem", "productos", JsonSerializer.Serialize(productos));
-
+        // Navegar de vuelta a la lista
         NavMan.NavigateTo("productos");
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            var productosJson = await JSx.InvokeAsync<string>("localStorage.getItem", "productos");
-
-            if (!string.IsNullOrEmpty(productosJson))
-            {
-                productos = JsonSerializer.Deserialize<List<Producto>>(productosJson) ?? new List<Producto>();
-
-                if (id != null)
-                {
-                    producto = productos.FirstOrDefault(r => r.Id == id) ?? new Producto();
-                }
-
-                StateHasChanged();
-            }
-        }
-    }
-    public class Producto
-    {
-        public string Id { get; set; } = string.Empty;
-        public string Nombre { get; set; } = string.Empty;
-        public decimal PrecioUnitario { get; set; } = 0;
-        public int StockActual { get; set; } = 0;
-        public DateTime FechaIngreso { get; set; } = DateTime.Now;
-        public string CodigoSKU { get; set; } = string.Empty;
     }
 }
