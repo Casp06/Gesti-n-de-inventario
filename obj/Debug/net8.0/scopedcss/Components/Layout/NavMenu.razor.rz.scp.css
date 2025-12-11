@@ -108,10 +108,16 @@
 /* --- Sección de Estilos de Redes Sociales --- */
 
 /* Contenedor de los enlaces sociales */
+.menu[b-7s8uwk3aec] {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 .social-links[b-7s8uwk3aec] {
     margin-top: auto; 
-    display: flex; 
-    justify-content: center; 
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
     gap: 15px;
 }
 
